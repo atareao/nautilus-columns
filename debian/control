@@ -17,9 +17,7 @@ Depends: ${misc:Depends}, ${python:Depends},
 	python-mutagen,
 	python-pyexiv2,
 	python-kaa-metadata,
-	libnautilus-extension1a,
-	python-pypdf,
-	python-imaging
+	python-pypdf2
 Description: Nautilus Extension
  *** Unofficial package ***
  A Nautilus extension to display music/EXIF and PDF metadata info in the Nautilus List View.

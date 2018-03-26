@@ -4,7 +4,8 @@ Maintainer: Alin Andrei <webupd8@gmail.com>
 Source: http://ubuntuforums.org/showpost.php?p=6643803&postcount=4
 
 Files: *
-Copyright: 2009-2010, jmdsdf, geb666, Giacomo Bordiga
+Copyright: 2018, Lorenzo Carbonell <lorenzo.carbonell.cerezo@gmail.com>
+           2009-2010, jmdsdf, geb666, Giacomo Bordiga
            2009-2010, jmdsdf, geb666, Giacomo Bordiga
            
 License: GPL-3
@@ -12,8 +13,9 @@ License: GPL-3
    can be found in the file `/usr/share/common-licenses/GPL-3'.
 
 Files: debian/*
-Copyright: 2010, Filip Chabik <hadret@gmail.com>
-       2010, Alin Andrei <webupd8@gmail.com>
+Copyright: 2018, Lorenzo Carbonell <lorenzo.carbonell.cerezo@gmail.com>
+           2010, Filip Chabik <hadret@gmail.com>
+           2010, Alin Andrei <webupd8@gmail.com>
            2009-2010, jmdsdf, geb666, Giacomo Bordiga
 License: GPL-3
    On Debian systems, the complete text of the GPL-3

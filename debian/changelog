@@ -1,3 +1,11 @@
+nautilus-columns (0.3.4-0extras16.04.5) bionic; urgency=medium
+
+  * Internationalization
+  * Width x Height
+  * Updated translations
+
+ -- Lorenzo Carbonell <lorenzo.carbonell.cerezo@gmail.com>  Mon, 26 Mar 2018 19:39:54 +0200
+
 nautilus-columns (0.3.3-1~webupd8~1) xenial; urgency=medium
 
   * depend on python-imaging

@@ -1,5 +1,0 @@
-#!/bin/bash
-echo "Restarting Nautilus..."
-killall nautilus
-
-exit 0
