@@ -1,0 +1,26 @@
+Source: nautilus-columns
+Section: gnome
+Priority: extra
+Maintainer: Lorenzo Carbonell Cerezo <lorenzo.carbonell.cerezo@gmail.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://ubuntuforums.org/showpost.php?p=6643803&postcount=4
+
+Package: nautilus-columns
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends},
+	python,
+	python-gi,
+	python-pil,
+	gir1.2-nautilus-3.0,
+	python-nautilus,
+	python-mutagen,
+	python-pyexiv2,
+	python-kaa-metadata,
+	libnautilus-extension1a,
+	python-pypdf,
+	python-imaging
+Description: Nautilus Extension
+ *** Unofficial package ***
+ A Nautilus extension to display music/EXIF and PDF metadata info in the Nautilus List View.
+ This package provides a Nautilus extension.
