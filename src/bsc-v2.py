@@ -366,9 +366,8 @@ FileManagerPython::resolution_unit_column',
             FileManager.Column(name='\
 FileManagerPython::datetime_original_column',
                                attribute='datetime_original',
-                               label=_('EXIF Dateshot'),
-                               description=_('Get the photo capture date from \
-EXIF data')),
+                               label=_('Capture date'),
+                               description=_('Photo capture date')),
             FileManager.Column(name='\
 FileManagerPython::shutter_speed_value_column',
                                attribute='shutter_speed_value',
@@ -418,12 +417,6 @@ FileManagerPython::exposure_mode_column',
                                description=_('The exposure mode set when the \
 image was shot')),
             FileManager.Column(name='\
-FileManagerPython::focal_length_column',
-                               attribute='focal_length',
-                               label=_('Focal length'),
-                               description=_('The equivalent focal length \
-assuming a 35mm film camera, in mm')),
-            FileManager.Column(name='\
 FileManagerPython::gain_control_column',
                                attribute='gain_control',
                                label=_('Gain control'),
@@ -446,11 +439,6 @@ FileManagerPython::pages_column',
                                attribute='pages',
                                label=_('Pages'),
                                description=_('Number of pages')),
-            FileManager.Column(name='FileManagerPython::exif_rating',
-                               attribute='exif_rating',
-                               label=_('EXIF Rating'),
-                               description=_('Rating of the Image as reported \
-by EXIF data')),
         )
 
     def update_file_info(self, file):
@@ -486,7 +474,6 @@ by EXIF data')),
         file.add_string_attribute('light_source', '')
         file.add_string_attribute('flash', '')
         file.add_string_attribute('exposure_mode', '')
-        file.add_string_attribute('focal_length', '')
         file.add_string_attribute('gain_control', '')
         file.add_string_attribute('width', '')
         file.add_string_attribute('height', '')
@@ -708,13 +695,6 @@ by EXIF data')),
                 file.add_string_attribute(
                     'exposure_mode',
                     get_exposure_mode(metadata))
-                try:
-                    file.add_string_attribute(
-                        'focal_length',
-                        metadata.get_tag_string(
-                            'Exif.Photo.FocalLengthIn35mmFilm'))
-                except Exception:
-                    file.add_string_attribute('focal_length', '')
                 file.add_string_attribute(
                     'gain_control',
                     get_gain_control(metadata))
@@ -743,7 +723,6 @@ by EXIF data')),
                 file.add_string_attribute('light_source', '')
                 file.add_string_attribute('flash', '')
                 file.add_string_attribute('exposure_mode', '')
-                file.add_string_attribute('focal_length', '')
                 file.add_string_attribute('gain_control', '')
             try:
                 im = Image.open(filename)

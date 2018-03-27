@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nautilus-columns 0.3.6\n"
 "Report-Msgid-Bugs-To: lorenzo.carbonell.cerezo@gmail.com\n"
-"POT-Creation-Date: 2018-03-27 09:33+0200\n"
+"POT-Creation-Date: 2018-03-27 10:07+0200\n"
 "PO-Revision-Date: 2012-02-26 19:31+0100\n"
 "Last-Translator: atareao <lorenzo.carbonell.cerezo@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -19,15 +19,15 @@ msgstr ""
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:109
 msgid "No absolute unit of measurement"
-msgstr ""
+msgstr "Sin unidades de medida"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:111
 msgid "Inch"
-msgstr ""
+msgstr "Pulgadas"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:113
 msgid "Centimeter"
-msgstr ""
+msgstr "Centímetros"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:114
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:123
@@ -40,153 +40,152 @@ msgstr ""
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:243
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:267
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:125
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:130
 msgid "Flipped"
-msgstr ""
+msgstr "Volteado"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:132
 msgid "180º"
-msgstr ""
+msgstr "180º"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:134
 msgid "90º"
-msgstr ""
+msgstr "90º"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:136
 msgid "270º"
-msgstr ""
+msgstr "270º"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:148
 msgid "Average"
-msgstr ""
+msgstr "Medio"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:150
 msgid "Center weighted average"
-msgstr ""
+msgstr "Centrado"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:152
 msgid "Spot"
-msgstr ""
+msgstr "Puntual"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:154
 msgid "Multi spot"
-msgstr ""
+msgstr "Multipunto"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:156
 msgid "Pattern"
-msgstr ""
+msgstr "Patrón"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:158
 msgid "Partial"
-msgstr ""
+msgstr "Parcial"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:160
 msgid "other "
-msgstr ""
+msgstr "Otro"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:172
 msgid "Daylight"
-msgstr ""
+msgstr "Luz del día"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:174
 msgid "Fluorescent"
-msgstr ""
+msgstr "Fluorescente"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:176
 msgid "Tungsten (incandescent light)"
-msgstr ""
+msgstr "Luz incandescente"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:178
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:411
-#, fuzzy
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:410
 msgid "Flash"
-msgstr "Flash EXIF"
+msgstr "Flash"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:180
 msgid "Fine weather"
-msgstr ""
+msgstr "Buen tiempo"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:182
 msgid "Cloudy weather"
-msgstr ""
+msgstr "Nublado"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:184
 msgid "Shade"
-msgstr ""
+msgstr "Sombras"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:186
 msgid "Daylight fluorescent (D 5700 - 7100K)"
-msgstr ""
+msgstr "5700 - 7100K"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:188
 msgid "Day white fluorescent (N 4600 - 5400K)"
-msgstr ""
+msgstr "4600 - 5400K"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:190
 msgid "Cool white fluorescent (W 3900 - 4500K)"
-msgstr ""
+msgstr "3900 - 4500K"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:192
 msgid "White fluorescent (WW 3200 - 3700K)"
-msgstr ""
+msgstr "3200 - 3700K"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:194
 msgid "Standard light A"
-msgstr ""
+msgstr "Luz estándar A"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:196
 msgid "Standard light B"
-msgstr ""
+msgstr "Luz estándar B"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:198
 msgid "Standard light C"
-msgstr ""
+msgstr "Luz estándar C"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:200
 msgid "D55"
-msgstr ""
+msgstr "D55"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:202
 msgid "D65"
-msgstr ""
+msgstr "D65"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:204
 msgid "D75"
-msgstr ""
+msgstr "D75"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:206
 msgid "D50"
-msgstr ""
+msgstr "D50"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:208
 msgid "ISO studio tungsten"
-msgstr ""
+msgstr "ISO estudio tungsteno"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:210
 msgid "Other light source"
-msgstr ""
+msgstr "Otra"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:220
 msgid "Auto exposure"
-msgstr ""
+msgstr "Auto exposición"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:222
 msgid "Manual exposure"
-msgstr ""
+msgstr "Exposición manual"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:224
 msgid "Auto bracket"
-msgstr ""
+msgstr "Auto bracket"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:234
 msgid "None"
-msgstr ""
+msgstr "Ninguna"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:236
 msgid "Low Gain Up"
@@ -206,11 +205,11 @@ msgstr ""
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:252
 msgid "Flash did not fire"
-msgstr ""
+msgstr "Sin"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:254
 msgid "Flash fired"
-msgstr ""
+msgstr "Con"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:256
 msgid "Strobe return light detected"
@@ -226,15 +225,15 @@ msgstr ""
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:262
 msgid "Auto mode"
-msgstr ""
+msgstr "Auto"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:264
 msgid "No flash function"
-msgstr ""
+msgstr "Sin función de flash"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:266
 msgid "Red eye reduction mode"
-msgstr ""
+msgstr "Ojos rojos"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:280
 msgid "Title"
@@ -298,259 +297,255 @@ msgstr "Duración del audio"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:318
 msgid "Exposure time"
-msgstr ""
+msgstr "Tiempo de exposición"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:319
 msgid "Exposure time in seconds"
-msgstr ""
+msgstr "Tiempo de exposición en segundos"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:322
-#, fuzzy
 msgid "F number"
-msgstr "Número de pista"
+msgstr "Número F"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:323
 msgid "Exposure F number"
-msgstr ""
+msgstr "Número F de exposíción"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:326
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:423
 msgid "Focal length"
-msgstr ""
+msgstr "Longitud focal"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:327
 msgid "The actual focal length of the lens, in mm."
-msgstr ""
+msgstr "Longitud focal en mm"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:331
 msgid "Altitude"
-msgstr ""
+msgstr "Altitud"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:332
 msgid "GPS Altitude"
-msgstr ""
+msgstr "Altitud GPS"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:335
 msgid "Latitude"
-msgstr ""
+msgstr "Latitud"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:336
 msgid "GPS Latitude"
-msgstr ""
+msgstr "Latitud GPS"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:339
 msgid "Longitude"
-msgstr ""
+msgstr "Longitud"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:340
 msgid "GPS Longitude"
-msgstr ""
+msgstr "Longitud GPS"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:343
 msgid "ISO"
-msgstr ""
+msgstr "ISO"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:344
 msgid "ISO Speed"
-msgstr ""
+msgstr "Velocidad ISO"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:347
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:348
 msgid "Orientation"
-msgstr ""
+msgstr "Orientación"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:351
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:352
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:356
 msgid "Resolution unit"
-msgstr ""
+msgstr "Unidad de resolución"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:357
 msgid "The unit for measuring"
-msgstr ""
+msgstr "Unidad de medida"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:360
 msgid "X resolution"
-msgstr ""
+msgstr "Resolución X"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:361
 msgid "The resolution in the x axis"
-msgstr ""
+msgstr "Resolución en el eje X"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:364
 msgid "Y resolution"
-msgstr ""
+msgstr "Resolución Y"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:365
 msgid "The resolution in the y axis"
-msgstr ""
+msgstr "Resolución en el eje Y"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:369
-msgid "EXIF Dateshot"
-msgstr "Fecha EXIF"
+msgid "Capture date"
+msgstr "Fecha de captura"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:370
-msgid "Get the photo capture date from EXIF data"
-msgstr "Fecha de la fotografía extraído de la información EXIF"
+msgid "Photo capture date"
+msgstr "Fecha de captura de la fotografía"
 
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:374
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:375
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:376
 msgid "Shutter speed"
-msgstr ""
+msgstr "Velocidad de disparo"
+
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:379
+msgid "Aperture"
+msgstr "Apertura"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:380
-msgid "Aperture"
-msgstr ""
-
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:381
 msgid "The lens aperture"
-msgstr ""
+msgstr "Apertura de la lente"
 
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:384
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:385
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:386
 msgid "Brightness"
-msgstr ""
+msgstr "Brillo"
+
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:389
+msgid "Exposure"
+msgstr "Exposición"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:390
-msgid "Exposure"
-msgstr ""
-
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:391
 msgid "The exposure bias"
-msgstr ""
+msgstr "Exposición bias"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:395
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:394
 msgid "Max aperture"
-msgstr ""
+msgstr "Máxima apertura"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:397
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:396
 msgid "The smallest F number of the lens"
-msgstr ""
+msgstr "El menor número F de la lente"
+
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:400
+msgid "Metering mode"
+msgstr "Modo de medición"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:401
-msgid "Metering mode"
-msgstr ""
-
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:402
 msgid "The metering mode"
-msgstr ""
+msgstr "Modo de medición"
+
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:405
+msgid "Light source"
+msgstr "Fuente de luz"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:406
-msgid "Light source"
-msgstr ""
-
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:407
 msgid "The kind of light source"
-msgstr ""
+msgstr "Tipo de fuente de luz"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:412
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:411
 msgid "Indicates the status of flash when the image was shot"
-msgstr ""
+msgstr "Indica el estado del flash cuando se tomó la fotografía"
+
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:416
+msgid "Exposure mode"
+msgstr "Modo de exposición"
 
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:417
-msgid "Exposure mode"
-msgstr ""
-
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:418
 msgid "The exposure mode set when the image was shot"
-msgstr ""
+msgstr "El modo de exposición cuando se tomó la fotografía"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:424
-msgid "The equivalent focal length assuming a 35mm film camera, in mm"
-msgstr ""
-
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:429
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:422
 msgid "Gain control"
-msgstr ""
+msgstr "Control de ganancia"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:430
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:423
 msgid "The degree of overall image gain adjustment"
 msgstr ""
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:435
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:428
 msgid "Width"
 msgstr "Ancho"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:437
-#, fuzzy
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:430
 msgid "Image/video/pdf width (pixel/mm)"
-msgstr "Ancho de la imagen/video (pixel)"
+msgstr "Ancho de la imagen/video/pdf (pixel/mm)"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:441
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:434
 msgid "Height"
 msgstr "Alto"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:443
-#, fuzzy
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:436
 msgid "Image/video/pdf height (pixel/mm)"
-msgstr "Alto de la imagen/video (pixel)"
+msgstr "Alto de la imagen/video/pdf (pixel/mm)"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:447
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:440
 msgid "Pages"
-msgstr ""
+msgstr "Páginas"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:448
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:441
 msgid "Number of pages"
-msgstr ""
+msgstr "Número de páginas"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:451
-msgid "EXIF Rating"
-msgstr "Puntuación EXIF"
-
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:452
-msgid "Rating of the Image as reported by EXIF data"
-msgstr "Puntuación de la imagen segun la información EXIF"
-
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:501
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:505
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:509
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:514
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:518
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:522
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:527
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:531
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:535
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:562
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:563
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:564
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:753
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:757
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:549
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:550
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:551
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:732
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:736
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:759
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:764
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:769
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:774
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:780
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:785
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:790
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:795
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:801
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:805
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:784
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:788
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:792
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:796
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:800
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:804
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:806
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:807
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:808
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:809
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:810
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:811
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:812
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:813
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:817
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:821
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:825
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:827
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:814
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:815
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:816
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:828
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:829
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:830
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:831
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:832
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:833
 #: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:834
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:835
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:836
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:837
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:849
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:855
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:861
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:884
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:885
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:886
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:887
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:888
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:840
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:863
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:864
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:865
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:866
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:867
 msgid "Error"
 msgstr "error"
 
-#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:799
+#: /datos/Sync/Programacion/Nautilus/nautilus-columns/src/bsc-v2.py:778
 msgid " Hz"
 msgstr " Hz"
+
+#~ msgid "EXIF Dateshot"
+#~ msgstr "Fecha EXIF"
+
+#~ msgid "Get the photo capture date from EXIF data"
+#~ msgstr "Fecha de la fotografía extraído de la información EXIF"
+
+#~ msgid "EXIF Rating"
+#~ msgstr "Puntuación EXIF"
+
+#~ msgid "Rating of the Image as reported by EXIF data"
+#~ msgstr "Puntuación de la imagen segun la información EXIF"
 
 #~ msgid "EXIF Software"
 #~ msgstr "Software EXIF"
