@@ -80,6 +80,7 @@ from PyPDF2 import PdfFileReader
 # locale
 import sys
 import os
+import math
 import locale
 import gettext
 
@@ -170,12 +171,19 @@ as reported by EXIF data')),
 FileManagerPython::width_column',
                                attribute='width',
                                label=_('Width'),
-                               description=_('Image/video width (pixel)')),
+                               description=_(
+                                    'Image/video/pdf width (pixel/mm)')),
             FileManager.Column(name='\
 FileManagerPython::height_column',
                                attribute='height',
                                label=_('Height'),
-                               description=_('Image/video height (pixel)')),
+                               description=_(
+                                    'Image/video/pdf height (pixel/mm)')),
+            FileManager.Column(name='\
+FileManagerPython::pages_column',
+                               attribute='pages',
+                               label=_('Pages'),
+                               description=_('Number of pages')),
             FileManager.Column(name='FileManagerPython::exif_rating',
                                attribute='exif_rating',
                                label=_('EXIF Rating'),
@@ -201,6 +209,7 @@ by EXIF data')),
         file.add_string_attribute('exif_rating', '')
         file.add_string_attribute('width', '')
         file.add_string_attribute('height', '')
+        file.add_string_attribute('pages', '')
 
         if file.get_uri_scheme() != 'file':
             return
@@ -433,18 +442,50 @@ Exif.Photo.PixelXDimension']
             try:
                 f = open(filename, 'rb')
                 pdf = PdfFileReader(f)
+                info = pdf.getDocumentInfo()
                 try:
-                    file.add_string_attribute('title',
-                                              pdf.getDocumentInfo().title)
+                    file.add_string_attribute(
+                        'title',
+                        info.title if info.title is not None else '')
                 except Exception:
                     file.add_string_attribute('title', _('Error'))
                 try:
-                    file.add_string_attribute('artist',
-                                              pdf.getDocumentInfo().author)
+                    file.add_string_attribute(
+                        'artist',
+                        info.author if info.author is not None else '')
                 except Exception:
                     file.add_string_attribute('artist', _('Error'))
+                try:
+                    file.add_string_attribute(
+                        'pages',
+                        str(pdf.getNumPages()))
+                except Exception:
+                    file.add_string_attribute('pages', _('Error'))
+                if pdf.getNumPages() > 0:
+                    try:
+                        width = abs(pdf.getPage(0).mediaBox.upperRight[0] -
+                                    pdf.getPage(0).mediaBox.lowerLeft[0])
+                        file.add_string_attribute(
+                            'width',
+                            str(int(float(width) * math.sqrt(2.0) / 4.0)))
+                    except Exception:
+                        file.add_string_attribute('width', '')
+                    try:
+                        height = abs(pdf.getPage(0).mediaBox.upperRight[1] -
+                                     pdf.getPage(0).mediaBox.lowerLeft[1])
+                        file.add_string_attribute(
+                            'height',
+                            str(int(float(height) * math.sqrt(2.0) / 4.0)))
+                    except Exception:
+                        file.add_string_attribute('height', '')
+                else:
+                    file.add_string_attribute('width', '')
+                    file.add_string_attribute('height', '')
                 f.close()
             except Exception:
                 file.add_string_attribute('title', _('Error'))
                 file.add_string_attribute('artist', _('Error'))
+                file.add_string_attribute('pages', _('Error'))
+                file.add_string_attribute('width', _('Error'))
+                file.add_string_attribute('height', _('Error'))
         self.get_columns()

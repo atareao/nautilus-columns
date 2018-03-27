@@ -1,3 +1,9 @@
+nautilus-columns (0.3.5-0extras16.04.0) bionic; urgency=medium
+
+  * Add more info to PDF: width, height and number of pages
+
+ -- Lorenzo Carbonell <lorenzo.carbonell.cerezo@gmail.com>  Tue, 27 Mar 2018 05:40:18 +0200
+
 nautilus-columns (0.3.4-0extras16.04.5) bionic; urgency=medium
 
   * Internationalization
