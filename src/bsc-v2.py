@@ -58,22 +58,21 @@ import gi
 try:
     gi.require_version('Nautilus', '3.0')
     gi.require_version('GObject', '2.0')
+    gi.require_version('GExiv2', "0.10")
 except Exception as e:
     print(e)
     exit(1)
 from gi.repository import Nautilus as FileManager
 from gi.repository import GObject
+from gi.repository import GExiv2
 
 import urllib
 # for id3 support
 from mutagen.easyid3 import EasyID3
 from mutagen.mp3 import MPEGInfo
-# for exif support
-import pyexiv2
 # for reading videos. for future improvement, this can also read mp3!
 import kaa.metadata
 # for reading image dimensions
-# import Image
 from PIL import Image
 # for reading pdf
 from PyPDF2 import PdfFileReader
@@ -99,6 +98,173 @@ try:
 except Exception as e:
     print(e)
     _ = str
+
+
+def get_resolution_unit(metadata):
+    try:
+        value = metadata.get_tag_string('Exif.Image.ResolutionUnit')
+    except Exception:
+        value == -1
+    if value == '1':
+        return _('No absolute unit of measurement')
+    elif value == '2':
+        return _('Inch')
+    elif value == '3':
+        return _('Centimeter')
+    return _('Unknown')
+
+
+def get_orientation(metadata):
+    try:
+        value = metadata.get_orientation()
+    except Exception:
+        value == -1
+    if value == GExiv2.Orientation.UNSPECIFIED:
+        return _('Unknown')
+    elif value == GExiv2.Orientation.NORMAL:
+        return _('Normal')
+    elif value == GExiv2.Orientation.HFLIP or\
+            value == GExiv2.Orientation.VFLIP or\
+            value == GExiv2.Orientation.ROT_90_HFLIP or\
+            value == GExiv2.Orientation.ROT_90_VFLIP:
+        return _('Flipped')
+    elif value == GExiv2.Orientation.ROT_180:
+        return _('180º')
+    elif value == GExiv2.Orientation.ROT_90:
+        return _('90º')
+    elif value == GExiv2.Orientation.ROT_270:
+        return _('270º')
+    return _('Unknown')
+
+
+def get_metering_mode(metadata):
+    try:
+        value = metadata.get_tag_string('Exif.Photo.MeteringMode')
+    except Exception:
+        value = -1
+    if value == '0':
+            return _('Unknown')
+    elif value == '1':
+            return _('Average')
+    elif value == '2':
+            return _('Center weighted average')
+    elif value == '3':
+            return _('Spot')
+    elif value == '4':
+            return _('Multi spot')
+    elif value == '5':
+            return _('Pattern')
+    elif value == '6':
+            return _('Partial')
+    elif value == '255':
+            return _('other ')
+    return _('Unknown')
+
+
+def get_light_source(metadata):
+    try:
+        value = metadata.get_tag_string('Exif.Photo.LightSource')
+    except Exception:
+        value = -1
+    if value == '0':
+            return _('Unknown')
+    elif value == '1':
+            return _('Daylight')
+    elif value == '2':
+            return _('Fluorescent')
+    elif value == '3':
+            return _('Tungsten (incandescent light)')
+    elif value == '4':
+            return _('Flash')
+    elif value == '9':
+            return _('Fine weather')
+    elif value == '10':
+            return _('Cloudy weather')
+    elif value == '11':
+            return _('Shade')
+    elif value == '12':
+            return _('Daylight fluorescent (D 5700 - 7100K)')
+    elif value == '13':
+            return _('Day white fluorescent (N 4600 - 5400K)')
+    elif value == '14':
+            return _('Cool white fluorescent (W 3900 - 4500K)')
+    elif value == '15':
+            return _('White fluorescent (WW 3200 - 3700K)')
+    elif value == '17':
+            return _('Standard light A')
+    elif value == '18':
+            return _('Standard light B')
+    elif value == '19':
+            return _('Standard light C')
+    elif value == '20':
+            return _('D55')
+    elif value == '21':
+            return _('D65')
+    elif value == '22':
+            return _('D75')
+    elif value == '23':
+            return _('D50')
+    elif value == '24':
+            return _('ISO studio tungsten')
+    elif value == '255':
+            return _('Other light source')
+    return _('Unknown')
+
+
+def get_exposure_mode(metadata):
+    try:
+        value = metadata.get_tag_string('Exif.Photo.ExposureMode')
+    except Exception:
+        value = -1
+    if value == '0':
+        return _('Auto exposure')
+    elif value == '1':
+        return _('Manual exposure')
+    elif value == '2':
+        return _('Auto bracket')
+    return _('Unknown')
+
+
+def get_gain_control(metadata):
+    try:
+        value = metadata.get_tag_string('Exif.Photo.GainControl')
+    except Exception:
+        value = -1
+    if value == '0':
+        return _('None')
+    elif value == '1':
+        return _('Low Gain Up')
+    elif value == '2':
+        return _('High Gain Up')
+    elif value == '3':
+        return _('Low Gain Down')
+    elif value == '4':
+        return _('High Gain Down')
+    return _('Unknown')
+
+
+def get_flash(metadata):
+    try:
+        value = metadata.get_tag_string('Exif.Photo.Flash')
+    except Exception:
+        value = -1
+    if value == '0':
+        return _('Flash did not fire')
+    elif value == '1':
+        return _('Flash fired')
+    elif value == '2':
+        return _('Strobe return light detected')
+    elif value == '4':
+        return _('Strobe return light not detected')
+    elif value == '8':
+        return _('Compulsory flash mode')
+    elif value == '16':
+        return _('Auto mode')
+    elif value == '32':
+        return _('No flash function')
+    elif value == '64':
+        return _('Red eye reduction mode')
+    return _('Unknown')
 
 
 class ColumnExtension(GObject.GObject,
@@ -146,27 +312,123 @@ second')),
                                attribute='length',
                                label=_('Length'),
                                description=_('Length of audio')),
+            # Images
+            FileManager.Column(name='FileManagerPython::exposure_time_column',
+                               attribute='exposure_time',
+                               label=_('Exposure time'),
+                               description=_('Exposure time in seconds')),
+            FileManager.Column(name='FileManagerPython::fnumber_column',
+                               attribute='fnumber',
+                               label=_('F number'),
+                               description=_('Exposure F number')),
+            FileManager.Column(name='FileManagerPython::fnumber_focal_length',
+                               attribute='focal_length',
+                               label=_('Focal length'),
+                               description=_('The actual focal length of the \
+lens, in mm.')),
+            FileManager.Column(name='FileManagerPython::gps_altitude_column',
+                               attribute='gps_altitude',
+                               label=_('Altitude'),
+                               description=_('GPS Altitude')),
+            FileManager.Column(name='FileManagerPython::gps_latitude_column',
+                               attribute='gps_latitude',
+                               label=_('Latitude'),
+                               description=_('GPS Latitude')),
+            FileManager.Column(name='FileManagerPython::gps_longitude_column',
+                               attribute='gps_longitude',
+                               label=_('Longitude'),
+                               description=_('GPS Longitude')),
+            FileManager.Column(name='FileManagerPython::iso_speed_column',
+                               attribute='iso_speed',
+                               label=_('ISO'),
+                               description=_('ISO Speed')),
+            FileManager.Column(name='FileManagerPython::orientation_column',
+                               attribute='orientation',
+                               label=_('Orientation'),
+                               description=_('Orientation')),
+            FileManager.Column(name='FileManagerPython::model_column',
+                               attribute='model',
+                               label=_('Model'),
+                               description=_('Model')),
             FileManager.Column(name='\
-FileManagerPython::exif_datetime_original_column',
-                               attribute='exif_datetime_original',
+FileManagerPython::resolution_unit_column',
+                               attribute='resolution_unit',
+                               label=_('Resolution unit'),
+                               description=_('The unit for measuring')),
+            FileManager.Column(name='FileManagerPython::xresolution_column',
+                               attribute='xresolution',
+                               label=_('X resolution'),
+                               description=_('The resolution in the x axis')),
+            FileManager.Column(name='FileManagerPython::yresolution_column',
+                               attribute='yresolution',
+                               label=_('Y resolution'),
+                               description=_('The resolution in the y axis')),
+            FileManager.Column(name='\
+FileManagerPython::datetime_original_column',
+                               attribute='datetime_original',
                                label=_('EXIF Dateshot'),
                                description=_('Get the photo capture date from \
 EXIF data')),
-            FileManager.Column(name='FileManagerPython::exif_software_column',
-                               attribute='exif_software',
-                               label=_('EXIF Software'),
-                               description=_('EXIF - software used to save \
-image')),
-            FileManager.Column(name='FileManagerPython::exif_flash_column',
-                               attribute='exif_flash',
-                               label=_('EXIF flash'),
-                               description=_('EXIF - flash mode')),
             FileManager.Column(name='\
-FileManagerPython::exif_pixeldimensions_column',
-                               attribute='exif_pixeldimensions',
-                               label=_('EXIF Image Size'),
-                               description=_('Image size - pixel dimensions \
-as reported by EXIF data')),
+FileManagerPython::shutter_speed_value_column',
+                               attribute='shutter_speed_value',
+                               label=_('Shutter speed'),
+                               description=_('Shutter speed')),
+            FileManager.Column(name='\
+FileManagerPython::aperture_value_column',
+                               attribute='aperture_value',
+                               label=_('Aperture'),
+                               description=_('The lens aperture')),
+            FileManager.Column(name='\
+FileManagerPython::brightness_value_column',
+                               attribute='brightness_value',
+                               label=_('Brightness'),
+                               description=_('Brightness')),
+            FileManager.Column(name='\
+FileManagerPython::exposure_bias_value_column',
+                               attribute='exposure_bias_value',
+                               label=_('Exposure'),
+                               description=_('The exposure bias')),
+            FileManager.Column(name='\
+FileManagerPython::max_aperture_value_column',
+                               attribute='max_aperture_value',
+                               label=_('Max aperture'),
+                               description=_(
+                                    'The smallest F number of the lens')),
+            FileManager.Column(name='\
+FileManagerPython::metering_mode_column',
+                               attribute='metering_mode',
+                               label=_('Metering mode'),
+                               description=_('The metering mode')),
+            FileManager.Column(name='\
+FileManagerPython::light_source_column',
+                               attribute='light_source',
+                               label=_('Light source'),
+                               description=_('The kind of light source')),
+            FileManager.Column(name='\
+FileManagerPython::flash_column',
+                               attribute='flash',
+                               label=_('Flash'),
+                               description=_('Indicates the status of flash \
+when the image was shot')),
+            FileManager.Column(name='\
+FileManagerPython::exposure_mode_column',
+                               attribute='exposure_mode',
+                               label=_('Exposure mode'),
+                               description=_('The exposure mode set when the \
+image was shot')),
+            FileManager.Column(name='\
+FileManagerPython::focal_length_column',
+                               attribute='focal_length',
+                               label=_('Focal length'),
+                               description=_('The equivalent focal length \
+assuming a 35mm film camera, in mm')),
+            FileManager.Column(name='\
+FileManagerPython::gain_control_column',
+                               attribute='gain_control',
+                               label=_('Gain control'),
+                               description=_('The degree of overall image \
+gain adjustment')),
             FileManager.Column(name='\
 FileManagerPython::width_column',
                                attribute='width',
@@ -202,11 +464,30 @@ by EXIF data')),
         file.add_string_attribute('bitrate', '')
         file.add_string_attribute('samplerate', '')
         file.add_string_attribute('length', '')
-        file.add_string_attribute('exif_datetime_original', '')
-        file.add_string_attribute('exif_software', '')
-        file.add_string_attribute('exif_flash', '')
-        file.add_string_attribute('exif_pixeldimensions', '')
-        file.add_string_attribute('exif_rating', '')
+        file.add_string_attribute('datetime_original', '')
+        file.add_string_attribute('exposure_time', '')
+        file.add_string_attribute('fnumber', '')
+        file.add_string_attribute('focal_length', '')
+        file.add_string_attribute('gps_altitude', '')
+        file.add_string_attribute('gps_latitude', '')
+        file.add_string_attribute('gps_longitude', '')
+        file.add_string_attribute('iso_speed', '')
+        file.add_string_attribute('get_orientation', '')
+        file.add_string_attribute('model', '')
+        file.add_string_attribute('resolution_unit', '')
+        file.add_string_attribute('xresolution', '')
+        file.add_string_attribute('yresolution', '')
+        file.add_string_attribute('shutter_speed_value', '')
+        file.add_string_attribute('aperture_value', '')
+        file.add_string_attribute('brightness_value', '')
+        file.add_string_attribute('exposure_bias_value', '')
+        file.add_string_attribute('max_aperture_value', '')
+        file.add_string_attribute('metering_mode', '')
+        file.add_string_attribute('light_source', '')
+        file.add_string_attribute('flash', '')
+        file.add_string_attribute('exposure_mode', '')
+        file.add_string_attribute('focal_length', '')
+        file.add_string_attribute('gain_control', '')
         file.add_string_attribute('width', '')
         file.add_string_attribute('height', '')
         file.add_string_attribute('pages', '')
@@ -287,66 +568,183 @@ by EXIF data')),
                     pass
 
         # image handling
-        if file.is_mime_type('image/jpeg') or\
-                file.is_mime_type('image/png') or\
-                file.is_mime_type('image/gif') or\
-                file.is_mime_type('image/bmp'):
+        if file.get_mime_type().split('/')[0] in ('image'):
             # EXIF handling routines
             try:
-                metadata = pyexiv2.ImageMetadata(filename)
-                metadata.read()
+                metadata = GExiv2.Metadata(filename)
                 try:
-                    exif_datetimeoriginal = metadata['\
-Exif.Photo.DateTimeOriginal']
                     file.add_string_attribute(
-                        'exif_datetime_original',
-                        str(exif_datetimeoriginal.raw_value))
+                        'datetime_original',
+                        metadata.get_tag_string('Exif.Image.DateTime'))
                 except Exception:
-                    file.add_string_attribute('exif_datetime_original', '')
+                    file.add_string_attribute('datetime_original', '')
                 try:
-                    exif_imagesoftware = metadata['Exif.Image.Software']
                     file.add_string_attribute(
-                        'exif_software', str(exif_imagesoftware.raw_value))
+                        'artist',
+                        metadata.get_tag_string('Exif.Image.Artist'))
                 except Exception:
-                    file.add_string_attribute('exif_software', '')
+                    file.add_string_attribute('artist', '')
                 try:
-                    exif_photoflash = metadata['Exif.Photo.Flash']
                     file.add_string_attribute(
-                        'exif_flash', str(exif_photoflash.raw_value))
+                        'title',
+                        metadata.get_tag_string('Exif.Image.ImageDescription'))
                 except Exception:
-                    file.add_string_attribute('exif_flash', '')
+                    file.add_string_attribute('title', '')
                 try:
-                    exif_pixelydimension = metadata['\
-Exif.Photo.PixelYDimension']
-                    exif_pixelxdimension = metadata['\
-Exif.Photo.PixelXDimension']
                     file.add_string_attribute(
-                        'exif_pixeldimensions',
-                        str(exif_pixelydimension.raw_value) + 'x' +
-                        str(exif_pixelxdimension.raw_value))
+                        'exposure_time',
+                        metadata.get_exposure_time())
                 except Exception:
-                    file.add_string_attribute('exif_pixeldimensions', '')
+                    file.add_string_attribute('exposure_time', '')
                 try:
-                    exif_rating = metadata['Xmp.xmp.Rating']
-                    stars = ''
-                    for i in range(1, 6):
-                        if i <= int(exif_rating.raw_value):
-                            stars += u'\u2605'
-                        else:
-                            stars += u'\u2606'
-                    file.add_string_attribute('exif_rating', stars)
-                except Exception:
                     file.add_string_attribute(
-                        'exif_rating', u'\u2606\u2606\u2606\u2606\u2606')
-            except Exception:
-                # no exif data?
-                file.add_string_attribute('exif_datetime_original', '')
-                file.add_string_attribute('exif_software', '')
-                file.add_string_attribute('exif_flash', '')
-                file.add_string_attribute('exif_pixeldimensions', '')
+                        'fnumber',
+                        metadata.get_fnumber())
+                except Exception:
+                    file.add_string_attribute('fnumber', '')
+                try:
+                    file.add_string_attribute(
+                        'focal_length',
+                        metadata.get_focal_length())
+                except Exception:
+                    file.add_string_attribute('focal_length', '')
+                try:
+                    file.add_string_attribute(
+                        'gps_altitude',
+                        metadata.get_gps_altitude())
+                except Exception:
+                    file.add_string_attribute('gps_altitude', '')
+                try:
+                    file.add_string_attribute(
+                        'gps_latitude',
+                        metadata.get_gps_latitude())
+                except Exception:
+                    file.add_string_attribute('gps_latitude', '')
+                try:
+                    file.add_string_attribute(
+                        'gps_longitude',
+                        metadata.get_gps_longitude())
+                except Exception:
+                    file.add_string_attribute('gps_longitude', '')
+                try:
+                    file.add_string_attribute(
+                        'iso_speed',
+                        metadata.get_iso_speed())
+                except Exception:
+                    file.add_string_attribute('iso_speed', '')
+                file.add_string_attribute('orientation',
+                                          get_orientation(metadata))
+                try:
+                    file.add_string_attribute(
+                        'model',
+                        metadata.get_tag_string('Exif.Image.Model'))
+                except Exception:
+                    file.add_string_attribute('model', '')
+                file.add_string_attribute('resolution_unit',
+                                          get_resolution_unit(metadata))
+                try:
+                    file.add_string_attribute(
+                        'xresolution',
+                        metadata.get_tag_string('Exif.Image.XResolution'))
+                except Exception:
+                    file.add_string_attribute('xresolution', '')
+                try:
+                    file.add_string_attribute(
+                        'yresolution',
+                        metadata.get_tag_string('Exif.Image.YResolution'))
+                except Exception:
+                    file.add_string_attribute('yresolution', '')
+                try:
+                    file.add_string_attribute(
+                        'shutter_speed_value',
+                        metadata.get_tag_string(
+                            'Exif.Photo.ShutterSpeedValue'))
+                except Exception:
+                    file.add_string_attribute('shutter_speed_value', '')
+                try:
+                    file.add_string_attribute(
+                        'aperture_value',
+                        metadata.get_tag_string(
+                            'Exif.Photo.ApertureValue'))
+                except Exception:
+                    file.add_string_attribute('aperture_value', '')
+                try:
+                    file.add_string_attribute(
+                        'brightness_value',
+                        metadata.get_tag_string(
+                            'Exif.Photo.BrightnessValue'))
+                except Exception:
+                    file.add_string_attribute('brightness_value', '')
+                try:
+                    file.add_string_attribute(
+                        'brightness_value',
+                        metadata.get_tag_string(
+                            'Exif.Photo.BrightnessValue'))
+                except Exception:
+                    file.add_string_attribute('brightness_value', '')
+                try:
+                    file.add_string_attribute(
+                        'exposure_bias_value',
+                        metadata.get_tag_string(
+                            'Exif.Photo.ExposureBiasValue'))
+                except Exception:
+                    file.add_string_attribute('exposure_bias_value', '')
+                try:
+                    file.add_string_attribute(
+                        'max_aperture_value',
+                        metadata.get_tag_string(
+                            'Exif.Photo.MaxApertureValue'))
+                except Exception:
+                    file.add_string_attribute('max_aperture_value', '')
                 file.add_string_attribute(
-                    'exif_rating', u'\u2606\u2606\u2606\u2606\u2606')
-            # try read image info directly
+                    'metering_mode',
+                    get_metering_mode(metadata))
+                file.add_string_attribute(
+                    'light_source',
+                    get_light_source(metadata))
+                file.add_string_attribute(
+                    'flash',
+                    get_flash(metadata))
+                file.add_string_attribute(
+                    'exposure_mode',
+                    get_exposure_mode(metadata))
+                try:
+                    file.add_string_attribute(
+                        'focal_length',
+                        metadata.get_tag_string(
+                            'Exif.Photo.FocalLengthIn35mmFilm'))
+                except Exception:
+                    file.add_string_attribute('focal_length', '')
+                file.add_string_attribute(
+                    'gain_control',
+                    get_gain_control(metadata))
+            except Exception:
+                file.add_string_attribute('datetime_original', '')
+                file.add_string_attribute('artist', '')
+                file.add_string_attribute('title', '')
+                file.add_string_attribute('exposure_time', '')
+                file.add_string_attribute('fnumber', '')
+                file.add_string_attribute('focal_length', '')
+                file.add_string_attribute('gps_altitude', '')
+                file.add_string_attribute('gps_latitude', '')
+                file.add_string_attribute('gps_longitude', '')
+                file.add_string_attribute('iso_speed', '')
+                file.add_string_attribute('get_orientation', '')
+                file.add_string_attribute('model', '')
+                file.add_string_attribute('resolution_unit', '')
+                file.add_string_attribute('xresolution', '')
+                file.add_string_attribute('yresolution', '')
+                file.add_string_attribute('shutter_speed_value', '')
+                file.add_string_attribute('aperture_value', '')
+                file.add_string_attribute('brightness_value', '')
+                file.add_string_attribute('exposure_bias_value', '')
+                file.add_string_attribute('max_aperture_value', '')
+                file.add_string_attribute('metering_mode', '')
+                file.add_string_attribute('light_source', '')
+                file.add_string_attribute('flash', '')
+                file.add_string_attribute('exposure_mode', '')
+                file.add_string_attribute('focal_length', '')
+                file.add_string_attribute('gain_control', '')
             try:
                 im = Image.open(filename)
                 try:
