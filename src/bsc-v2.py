@@ -58,7 +58,7 @@ import gi
 try:
     gi.require_version('Nautilus', '3.0')
     gi.require_version('GObject', '2.0')
-    gi.require_version('GExiv2', "0.10")
+    gi.require_version('GExiv2', '0.10')
 except Exception as e:
     print(e)
     exit(1)
@@ -70,15 +70,17 @@ import urllib
 # for id3 support
 from mutagen.easyid3 import EasyID3
 from mutagen.mp3 import MPEGInfo
-# for reading videos. for future improvement, this can also read mp3!
-import kaa.metadata
 # for reading image dimensions
 from PIL import Image
 # for reading pdf
 from PyPDF2 import PdfFileReader
+# for reading videos. for future improvement, this can also read mp3!
+from plumbum import local
+from plumbum import CommandNotFound
 # locale
 import sys
 import os
+import json
 import math
 import locale
 import gettext
@@ -266,6 +268,65 @@ def get_flash(metadata):
         return _('Red eye reduction mode')
     return _('Unknown')
 
+
+class FFProbe:
+    """
+    FFProbe wraps the ffprobe command and pulls the data into an object form::
+        metadata=FFProbe('multimedia-file.mov')
+    """
+
+    def __init__(self, path_to_video):
+        self.path_to_video = path_to_video
+        self.video = []
+        self.audio = []
+
+        try:
+            ffprobe = local['ffprobe']
+        except CommandNotFound:
+            raise IOError('ffprobe not found.')
+
+        if os.path.isfile(path_to_video):
+            options = ['-hide_banner', 'select_streams', 'v:0', 
+                       '-show_streams', '-of', 'json',
+                       'stream=codec_name,width,height,duration,bit_rate,nb_frame',
+                       path_to_video]
+            self.metadata = json.loads(ffprobe(options))
+
+    def get_codec_name(self):
+        """Get codec name
+        :returns: codec name
+        """
+        return self.metadata.get('codec_name', _('Unknown'))
+
+    def get_width(self):
+        """Get width
+        :returns: witdh
+        """
+        return self.metadata.get('width', _('Unkwnown'))
+
+    def get_height(self):
+        """Get height
+        :returns: height
+        """
+        return self.metadata.get('height', _('Unkwnown'))
+
+    def get_duration(self):
+        """Get duration
+        :returns: duration
+        """
+        return self.metadata.get('duration', _('Unkwnown'))
+
+    def get_bitrate(self):
+        """Get bitrate
+        :returns: bitrate
+        """
+        return self.metadata.get('bit_rate', _('Unkwnown'))
+
+    def get_frames(self):
+        """Get frames
+        :returns: frames
+        """
+        return self.metadata.get('nb_frames', _('Unkwnown'))
 
 class ColumnExtension(GObject.GObject,
                       FileManager.ColumnProvider,
@@ -483,7 +544,7 @@ FileManagerPython::pages_column',
             return
 
         # strip file:// to get absolute path
-        filename = urllib.unquote(file.get_uri()[7:])
+        filename = urllib.parse.unquote_plus(file.get_uri()[7:])
 
         # mp3 handling
         if file.is_mime_type('audio/mpeg'):
@@ -748,72 +809,47 @@ FileManagerPython::pages_column',
                 file.is_mime_type('video/x-matroska') or\
                 file.is_mime_type('audio/x-wav'):
             try:
-                info = kaa.metadata.parse(filename)
+                info = FFProbe(filename)
                 try:
-                    file.add_string_attribute(
-                        'length',
-                        '%02i:%02i:%02i' % ((int(info.length / 3600)),
-                                            (int(info.length / 60 % 60)),
-                                            (int(info.length % 60))))
+                    file.add_string_attribute('codec_name',
+                                              str(info.get_codec_name()))
+                except Exception:
+                    file.add_string_attribute('codec_name', _('Error'))
+                try:
+                    segundos = info.get_duration()
+                    duration = '%02i:%02i:%02i' % ((int(segundos / 3600)),
+                                                   (int(segundos / 60 % 60)),
+                                                   (int(segundos % 60)))
+                    file.add_string_attribute('length', duration)
                 except Exception:
                     file.add_string_attribute('length', _('Error'))
                 try:
                     file.add_string_attribute('width',
-                                              str(info.video[0].width))
+                                              str(info.get_width()))
                 except Exception:
                     file.add_string_attribute('height', _('Error'))
                 try:
                     file.add_string_attribute('height',
-                                              str(info.video[0].height))
+                                              str(info.get_height()))
                 except Exception:
                     file.add_string_attribute('width', _('Error'))
                 try:
                     file.add_string_attribute(
-                        'bitrate', str(round(info.audio[0].bitrate / 1000)))
+                        'bitrate', str(round(info.get_bitrate() / 1000)))
                 except Exception:
                     file.add_string_attribute('bitrate', _('Error'))
                 try:
-                    file.add_string_attribute(
-                        'samplerate',
-                        str(int(info.audio[0].samplerate)) + _(' Hz'))
+                    file.add_string_attribute('frames',
+                                              str(info.get_frames()))
                 except Exception:
-                    file.add_string_attribute('samplerate', _('Error'))
-                try:
-                    file.add_string_attribute('title', info.title)
-                except Exception:
-                    file.add_string_attribute('title', _('Error'))
-                try:
-                    file.add_string_attribute('artist', info.artist)
-                except Exception:
-                    file.add_string_attribute('artist', _('Error'))
-                try:
-                    file.add_string_attribute('genre', info.genre)
-                except Exception:
-                    file.add_string_attribute('genre', _('Error'))
-                try:
-                    file.add_string_attribute('tracknumber', info.trackno)
-                except Exception:
-                    file.add_string_attribute('tracknumber', _('Error'))
-                try:
-                    file.add_string_attribute('date', info.userdate)
-                except Exception:
-                    file.add_string_attribute('date', _('Error'))
-                try:
-                    file.add_string_attribute('album', info.album)
-                except Exception:
-                    file.add_string_attribute('album', _('Error'))
+                    file.add_string_attribute('frames', _('Error'))
             except Exception:
+                file.add_string_attribute('codec_name', _('Error'))
                 file.add_string_attribute('length', _('Error'))
                 file.add_string_attribute('width', _('Error'))
                 file.add_string_attribute('height', _('Error'))
                 file.add_string_attribute('bitrate', _('Error'))
-                file.add_string_attribute('samplerate', _('Error'))
-                file.add_string_attribute('title', _('Error'))
-                file.add_string_attribute('artist', _('Error'))
-                file.add_string_attribute('genre', _('Error'))
-                file.add_string_attribute('track', _('Error'))
-                file.add_string_attribute('date', _('Error'))
-                file.add_string_attribute('album', _('Error'))
+                file.add_string_attribute('frames', _('Error'))
         # pdf handling
         if file.is_mime_type('application/pdf'):
             try:
