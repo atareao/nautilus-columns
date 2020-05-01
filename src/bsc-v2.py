@@ -269,64 +269,59 @@ def get_flash(metadata):
     return _('Unknown')
 
 
-class FFProbe:
+class MediaInfo:
     """
-    FFProbe wraps the ffprobe command and pulls the data into an object form::
-        metadata=FFProbe('multimedia-file.mov')
+    MediaInfo wraps the mediainfo command and pulls the data into an object
+    form:
+        metadata=MediaInfo('multimedia-file.mov')
     """
 
     def __init__(self, path_to_video):
         self.path_to_video = path_to_video
-        self.video = []
-        self.audio = []
 
         try:
-            ffprobe = local['ffprobe']
+            mediainfo = local['mediainfo']
         except CommandNotFound:
-            raise IOError('ffprobe not found.')
+            raise IOError('mediainfo not found.')
 
         if os.path.isfile(path_to_video):
-            options = ['-hide_banner', 'select_streams', 'v:0', 
-                       '-show_streams', '-of', 'json',
-                       'stream=codec_name,width,height,duration,bit_rate,nb_frame',
-                       path_to_video]
-            self.metadata = json.loads(ffprobe(options))
+            options = ['--Output=JSON', '-f', path_to_video]
+            data = json.loads(MediaInfo(options))
+            for medatada in data['media']['track']:
+                if metadata['@type'] == 'General':
+                    metadata = data['media']['track'][0]
+                    self._format = metadata.get('Format', _('Unknown'))
+                    self._duration = metadata.get('Duration', -1)
+                    self._overallbitrate = metadata.get('OverallBitRate', _('Unknown'))
+                    self._framerate = metadata.get('FrameRate', _('Unknown'))
+                    self._framecount = metadata.get('FrameCount', _('Unknown'))
+                elif metadata['@type'] == 'Video':
+                    self._videoformat = metadata.get('Format', _('Unknown'))
+                    self._width = metadata.get('Width', _('Unknown'))
+                    self._height = metadata.get('Height', _('Unknown'))
+                    self._bitdepth = metadata.get('BitDepth', _('Unknown'))
+                elif metadata['@type'] == 'Audio':
+                    self._audioformat = metadata.get('Format', _('Unknown'))
+        else:
+            self._format = _('Unknown')
+            self._duration = _('Unknown')
+            self._overallbitrate = _('Unknown')
+            self._framerate = _('Unknown')
+            self._framecount = _('Unknown')
+            self._videoformat = _('Unknown')
+            self._width = _('Unknown')
+            self._height = _('Unknown')
+            self._bitdepth = _('Unknown')
+            self._audioformat = _('Unknown')
 
-    def get_codec_name(self):
-        """Get codec name
-        :returns: codec name
-        """
-        return self.metadata.get('codec_name', _('Unknown'))
+    def get_format(self):
+        """TODO: Docstring for get_format.
 
-    def get_width(self):
-        """Get width
-        :returns: witdh
-        """
-        return self.metadata.get('width', _('Unkwnown'))
+        :f: TODO
+        :returns: TODO
 
-    def get_height(self):
-        """Get height
-        :returns: height
         """
-        return self.metadata.get('height', _('Unkwnown'))
-
-    def get_duration(self):
-        """Get duration
-        :returns: duration
-        """
-        return self.metadata.get('duration', _('Unkwnown'))
-
-    def get_bitrate(self):
-        """Get bitrate
-        :returns: bitrate
-        """
-        return self.metadata.get('bit_rate', _('Unkwnown'))
-
-    def get_frames(self):
-        """Get frames
-        :returns: frames
-        """
-        return self.metadata.get('nb_frames', _('Unkwnown'))
+        return self._format
 
 class ColumnExtension(GObject.GObject,
                       FileManager.ColumnProvider,
