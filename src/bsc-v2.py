@@ -59,8 +59,8 @@ try:
     gi.require_version('Nautilus', '3.0')
     gi.require_version('GObject', '2.0')
     gi.require_version('GExiv2', '0.10')
-except Exception as e:
-    print(e)
+except ValueError as error:
+    print(error)
     exit(1)
 from gi.repository import Nautilus as FileManager
 from gi.repository import GObject
@@ -291,7 +291,7 @@ class MediaInfo:
                 if metadata['@type'] == 'General':
                     metadata = data['media']['track'][0]
                     self._format = metadata.get('Format', _('Unknown'))
-                    self._duration = metadata.get('Duration', -1)
+                    self._duration = metadata.get('Duration', _('Unknown'))
                     self._overallbitrate = metadata.get('OverallBitRate', _('Unknown'))
                     self._framerate = metadata.get('FrameRate', _('Unknown'))
                     self._framecount = metadata.get('FrameCount', _('Unknown'))
@@ -316,12 +316,87 @@ class MediaInfo:
 
     def get_format(self):
         """TODO: Docstring for get_format.
-
-        :f: TODO
         :returns: TODO
 
         """
         return self._format
+
+    def get_duration(self):
+        """TODO: Docstring for get_duration.
+        :returns: TODO
+
+        """
+        return self._duration
+
+    def get_overallbitrate(self):
+        """TODO: Docstring for get_overallbitrate.
+        :returns: TODO
+
+        """
+        return self._overallbitrate
+
+    def get_framerate(self):
+        """TODO: Docstring for get_framerate.
+        :returns: TODO
+
+        """
+        return self._framerate
+
+    def get_framecount(self):
+        """TODO: Docstring for get_framecount.
+        :returns: TODO
+
+        """
+        return self._framecount
+
+    def get_videoformat(self):
+        """TODO: Docstring for get_videoformat.
+        :returns: TODO
+
+        """
+        return self._videoformat
+
+    def get_width(self):
+        """TODO: Docstring for get_width.
+        :returns: TODO
+
+        """
+        return self._width
+
+    def get_height(self):
+        """TODO: Docstring for get_height.
+        :returns: TODO
+
+        """
+        return self._height
+
+    def get_bitdepth(self):
+        """TODO: Docstring for get_bitdepth.
+        :returns: TODO
+
+        """
+        return self._bitdepth
+
+    def get_audioformat(self):
+        """TODO: Docstring for get_audioformat.
+        :returns: TODO
+
+        """
+        return self._audioformat
+
+    def get_duration_string(self):
+        """TODO: Docstring for get_duration_string.
+        :returns: TODO
+
+        """
+        if self._duration == _('Unknown'):
+            return self._duration
+        else:
+            seconds = int(float(self._duration))
+            duration = '{:02d}:{:02d}:{:02d}'.format(seconds /3600,
+                                                     seconds / 60 % 60,
+                                                     seconds % 60)
+            return duration
 
 class ColumnExtension(GObject.GObject,
                       FileManager.ColumnProvider,
@@ -803,48 +878,24 @@ FileManagerPython::pages_column',
                 file.is_mime_type('video/x-flv') or\
                 file.is_mime_type('video/x-matroska') or\
                 file.is_mime_type('audio/x-wav'):
-            try:
-                info = FFProbe(filename)
-                try:
-                    file.add_string_attribute('codec_name',
-                                              str(info.get_codec_name()))
-                except Exception:
-                    file.add_string_attribute('codec_name', _('Error'))
-                try:
-                    segundos = info.get_duration()
-                    duration = '%02i:%02i:%02i' % ((int(segundos / 3600)),
-                                                   (int(segundos / 60 % 60)),
-                                                   (int(segundos % 60)))
-                    file.add_string_attribute('length', duration)
-                except Exception:
-                    file.add_string_attribute('length', _('Error'))
-                try:
-                    file.add_string_attribute('width',
-                                              str(info.get_width()))
-                except Exception:
-                    file.add_string_attribute('height', _('Error'))
-                try:
-                    file.add_string_attribute('height',
-                                              str(info.get_height()))
-                except Exception:
-                    file.add_string_attribute('width', _('Error'))
-                try:
-                    file.add_string_attribute(
-                        'bitrate', str(round(info.get_bitrate() / 1000)))
-                except Exception:
-                    file.add_string_attribute('bitrate', _('Error'))
-                try:
-                    file.add_string_attribute('frames',
-                                              str(info.get_frames()))
-                except Exception:
-                    file.add_string_attribute('frames', _('Error'))
-            except Exception:
-                file.add_string_attribute('codec_name', _('Error'))
-                file.add_string_attribute('length', _('Error'))
-                file.add_string_attribute('width', _('Error'))
-                file.add_string_attribute('height', _('Error'))
-                file.add_string_attribute('bitrate', _('Error'))
-                file.add_string_attribute('frames', _('Error'))
+            file.add_string_attribute('format',
+                                      info.get_format())
+            file.add_string_attribute('duration',
+                                      info.get_duration_string())
+            file.add_string_attribute('overallvitrate',
+                                      info.get_overallbitrate())
+            file.add_string_attribute('framecount',
+                                      info.get_framecount())
+            file.add_string_attribute('videoformat',
+                                      info.get_videoformat())
+            file.add_string_attribute('width',
+                                      info.get_width())
+            file.add_string_attribute('height',
+                                      info.get_height())
+            file.add_string_attribute('bitdepth',
+                                      info.get_bitdepth())
+            file.add_string_attribute('audioformat',
+                                      info.get_audioformat())
         # pdf handling
         if file.is_mime_type('application/pdf'):
             try:
