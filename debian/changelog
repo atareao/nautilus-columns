@@ -1,8 +1,9 @@
-nautilus-columns (0.3.8-0extras20.04.0) focal; urgency=medium
+nautilus-columns (0.3.8-0extras20.04.1) focal; urgency=medium
 
   * Use mediainfo to get info about video
+  * Minor bugs with mediainfo
 
- -- Lorenzo Carbonell <lorenzo.carbonell.cerezo@gmail.com>  Sat, 02 May 2020 06:52:34 +0200
+ -- Lorenzo Carbonell <lorenzo.carbonell.cerezo@gmail.com>  Sat, 02 May 2020 14:08:45 +0200
 
 nautilus-columns (0.3.7-0extras20.04.1) focal; urgency=medium
 

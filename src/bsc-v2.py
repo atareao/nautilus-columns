@@ -878,24 +878,25 @@ FileManagerPython::pages_column',
                 file.is_mime_type('video/x-flv') or\
                 file.is_mime_type('video/x-matroska') or\
                 file.is_mime_type('audio/x-wav'):
+            metadata = MediaInfo(filename)
             file.add_string_attribute('format',
-                                      info.get_format())
+                                      metadata.get_format())
             file.add_string_attribute('duration',
-                                      info.get_duration_string())
-            file.add_string_attribute('overallvitrate',
-                                      info.get_overallbitrate())
-            file.add_string_attribute('framecount',
-                                      info.get_framecount())
-            file.add_string_attribute('videoformat',
-                                      info.get_videoformat())
+                                      metadata.get_duration_string())
+            file.add_string_attribute('overall_bitrate',
+                                      metadata.get_overallbitrate())
+            file.add_string_attribute('frame_count',
+                                      metadata.get_framecount())
+            file.add_string_attribute('video_format',
+                                      metadata.get_videoformat())
             file.add_string_attribute('width',
-                                      info.get_width())
+                                      metadata.get_width())
             file.add_string_attribute('height',
-                                      info.get_height())
-            file.add_string_attribute('bitdepth',
-                                      info.get_bitdepth())
-            file.add_string_attribute('audioformat',
-                                      info.get_audioformat())
+                                      metadata.get_height())
+            file.add_string_attribute('bit_depth',
+                                      metadata.get_bitdepth())
+            file.add_string_attribute('audio_format',
+                                      metadata.get_audioformat())
         # pdf handling
         if file.is_mime_type('application/pdf'):
             try:
