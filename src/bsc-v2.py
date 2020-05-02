@@ -286,7 +286,7 @@ class MediaInfo:
 
         if os.path.isfile(path_to_video):
             options = ['--Output=JSON', '-f', path_to_video]
-            data = json.loads(MediaInfo(options))
+            data = json.loads(mediainfo(options))
             for medatada in data['media']['track']:
                 if metadata['@type'] == 'General':
                     metadata = data['media']['track'][0]
