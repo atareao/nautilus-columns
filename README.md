@@ -15,16 +15,16 @@ https://github.com/atareao/nautilus-columns
 Required dependencies:
 
 ```
-    python
-    python-gi
-    python-pil
-    gir1.2-nautilus-3.0
-    python-nautilus
-    python-mutagen
-    python-pyexiv2
-    python-kaa-metadata
-    libnautilus-extension1a
-    python-pypdf2
+    python3,
+    python3-gi,
+    python3-pil,
+    gir1.2-nautilus-3.0,
+    gir1.2-gexiv2-0.10,
+    python3-nautilus,
+    python3-mutagen,
+    python3-pypdf2,
+    python3-plumbum,
+    mediainfo
 ```
 
 ## Download
@@ -40,7 +40,7 @@ git clone https://github.com/atareao/nautilus-columns.git
 Nautilus:
 
 ```
-sudo add-apt-repository ppa:atarea/nautilus-extensions
+sudo add-apt-repository ppa:atareao/nautilus-extensions
 sudo apt update
 sudo apt install nautilus-columns
 ```
@@ -48,7 +48,7 @@ sudo apt install nautilus-columns
 Nemo
 
 ```
-sudo add-apt-repository ppa:atarea/nemo-extensions
+sudo add-apt-repository ppa:atareao/nemo-extensions
 sudo apt update
 sudo apt install nemo-columns
 ```
@@ -56,7 +56,7 @@ sudo apt install nemo-columns
 Caja
 
 ```
-sudo add-apt-repository ppa:atarea/caja-extensions
+sudo add-apt-repository ppa:atareao/caja-extensions
 sudo apt update
 sudo apt install caja-columns
 ```

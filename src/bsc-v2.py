@@ -273,7 +273,7 @@ class MediaInfo:
     """
     MediaInfo wraps the mediainfo command and pulls the data into an object
     form:
-        metadata=MediaInfo('multimedia-file.mov')
+        metadata = MediaInfo('multimedia-file.mov')
     """
 
     def __init__(self, path_to_video):
@@ -287,7 +287,7 @@ class MediaInfo:
         if os.path.isfile(path_to_video):
             options = ['--Output=JSON', '-f', path_to_video]
             data = json.loads(mediainfo(options))
-            for medatada in data['media']['track']:
+            for metadata in data['media']['track']:
                 if metadata['@type'] == 'General':
                     metadata = data['media']['track'][0]
                     self._format = metadata.get('Format', _('Unknown'))
@@ -393,9 +393,9 @@ class MediaInfo:
             return self._duration
         else:
             seconds = int(float(self._duration))
-            duration = '{:02d}:{:02d}:{:02d}'.format(seconds /3600,
-                                                     seconds / 60 % 60,
-                                                     seconds % 60)
+            duration = '{:02d}:{:02d}:{:02d}'.format(int(seconds / 3600),
+                                                     int(seconds / 60 % 60),
+                                                     int(seconds % 60))
             return duration
 
 class ColumnExtension(GObject.GObject,
