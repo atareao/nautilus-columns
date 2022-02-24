@@ -15,16 +15,12 @@ https://github.com/atareao/nautilus-columns
 Required dependencies:
 
 ```
-    python3,
-    python3-gi,
-    python3-pil,
-    gir1.2-nautilus-3.0,
-    gir1.2-gexiv2-0.10,
-    python3-nautilus,
-    python3-mutagen,
-    python3-pypdf2,
-    python3-plumbum,
-    mediainfo
+if [ -f "/etc/debian_version" ]; then
+ sudo apt install python3 python3-gi python3-pil gir1.2-nautilus-3.0 gir1.2-gexiv2-0.10 python3-nautilus python3-mutagen python3-pypdf2 python3-plumbum mediainfo
+fi
+if [ "$(grep -Ei 'fedora|redhat' /etc/*release)" ]; then
+ sudo dnf install python3 python3-pillow python3-nautilus python3-mutagen python3-PyPDF2 python3-plumbum mediainfo
+fi
 ```
 
 ## Download
